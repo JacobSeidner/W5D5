@@ -50,6 +50,12 @@ def biggest_cast
   #
   # Find the id and title of the 3 movies with the largest casts (i.e., most
   # actors).
+  Movie 
+    .select(:id, :title)
+    .joins(:castings)
+    .group(:id)
+    .order("COUNT(movies.id) DESC")
+    .limit(3)
   
 end
 
